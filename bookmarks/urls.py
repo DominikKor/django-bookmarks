@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.shortcuts import redirect
 from django.urls import path, include
 
 urlpatterns = [
@@ -23,6 +24,7 @@ urlpatterns = [
     path("account/", include("account.urls")),
     path("images/", include("images.urls", namespace="images")),
     path("social_auth/", include("social_django.urls", namespace="social")),
+    path("", lambda _: redirect("dashboard"), name="root"),
 ]
 
 if settings.DEBUG:

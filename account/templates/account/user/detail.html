@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+
+{% block title %}{{ user.get_full_name }}{% endblock %}
+
+{% block content %}
+    <h1>{{ user.get_full_name }}</h1>
+    <div id="profile-info">
+        <img src="{% thumbnail user.profile.photo 180x180 %}" class="user-detail"
+             alt="Profile picture of {{ user.username }}" style="width: 180px; height: 180px;">
+    </div>
+    {% with total_followers=user.followers.count %}
+        <span class="count">
+            <span class="total">{{ total_followers }}</span>
+            follower<span class="plural">{{ total_followers|pluralize }}</span>
+        </span>
+        <a href="#" data-id="{{ user.id }}" data-action="{% if request.user in user.followers.all %}un{% endif %}follow"
+           class="follow button">
+            {% if request.user not in user.followers.all %}
+                Follow
+            {% else %}
+                Unfollow
+            {% endif %}
+        </a>
+        <div id="image-list" class="image-container">
+            {% include "images/image/list_ajax.html" with images=user.images_created.all %}
+        </div>
+    {% endwith %}
+{% endblock %}
+
+<script>
+{% block domready %}
+    $("a.follow").click(function (e) {
+       e.preventDefault();
+       $.post(
+           '{% url 'user_follow' %}',
+           {
+               id: $(this).data('id'),
+               action: $(this).data('action'),
+           },
+           function (data) {
+               if (data["status"] === "ok") {
+                   const follow_button = $("a.follow");
+                   const previous_action = follow_button.data("action");
+
+                   follow_button.data("action", previous_action === "follow" ? "unfollow" : "follow");
+                   follow_button.text(previous_action === "follow" ? "Unfollow" : "Follow");
+
+                   const follower_count_span = $('span.count .total');
+                   const previous_followers = parseInt(follower_count_span.text());
+                   follower_count_span.text(
+                       previous_action === "follow" ? previous_followers + 1 : previous_followers - 1);
+
+                   const plural_span = $("span.plural");
+                   if (previous_followers === 0 && previous_action === "follow") {
+                       plural_span.text("");
+                   } else if (previous_followers === 1 && previous_action === "unfollow") {
+                       plural_span.text("s");
+                   }
+               }
+           }
+       );
+    });
+{% endblock %}
+</script>
