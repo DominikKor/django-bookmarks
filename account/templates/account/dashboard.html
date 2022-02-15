@@ -21,4 +21,12 @@
         <a href="{% url "edit" %}">edit your account</a> or
         <a href="{% url "password_change" %}">change your password</a>.
     </p>
+    <h2>What's happening</h2>
+    <div id="actions-list">
+        {% for action in actions %}
+            {% include "actions/action/detail.html" %}
+        {% empty %}
+            There are no activities here, yet. Follow a few users to see some!
+        {% endfor %}
+    </div>
 {% endblock %}

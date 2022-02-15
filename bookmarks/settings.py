@@ -47,6 +47,12 @@ ABSOLUTE_URL_OVERRIDES = {
     "auth.user": lambda u: reverse_lazy("user_detail", args=[u.username]),
 }
 
+# Redis
+
+REDIS_HOST = "localhost"
+REDIS_PORT = 6379
+REDIS_DB = 0
+
 # Social Authentication
 # Facebook
 SOCIAL_AUTH_FACEBOOK_KEY = "485602729724295"
