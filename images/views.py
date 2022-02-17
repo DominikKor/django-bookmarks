@@ -14,8 +14,15 @@ from .forms import ImageCreateForm
 from .models import Image
 
 # Connect to redis
-r = redis.Redis(host=settings.REDIS_HOST, port=settings.REDIS_PORT, db=settings.REDIS_DB,
-                password=settings.REDIS_PASSWORD, ssl=True)
+pool = redis.ConnectionPool(
+    host=settings.REDIS_HOST,
+    port=settings.REDIS_PORT,
+    db=settings.REDIS_DB,
+    password=settings.REDIS_PASSWORD,
+    connection_class=redis.SSLConnection,
+    ssl_cert_reqs=u'none'
+)
+r = redis.Redis(connection_pool=pool)
 
 
 @login_required
