@@ -49,10 +49,10 @@ ABSOLUTE_URL_OVERRIDES = {
 
 # Redis
 
-REDIS_HOST = "ec2-34-245-246-174.eu-west-1.compute.amazonaws.com"
-REDIS_PORT = 18940
+REDIS_HOST = "ec2-18-200-75-58.eu-west-1.compute.amazonaws.com"
+REDIS_PORT = 11500
 REDIS_DB = 0
-REDIS_PASSWORD = "p585e9e03feaf2c9e38b75f4fd3170d055082b2d52f1d82ee199e30e2013cd070"
+REDIS_PASSWORD = "p86a2fb793e1df694082095a78372b7c8c8b4d8548310fcb513371bc44df2bcb4"
 
 # Social Authentication
 # Facebook
