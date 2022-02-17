@@ -11,7 +11,7 @@ Deprecated==1.2.13
 Django==4.0.1
 django-extensions==3.1.5
 easy-thumbnails==2.8.1
-gunicorn
+gunicorn==20.1.0
 idna==3.3
 instance==0.0.0.0.0.0a0.dev20210120
 lxml==4.7.1
@@ -39,4 +39,5 @@ urllib3==1.26.8
 vdf==3.4
 webencodings==0.5.1
 Werkzeug==2.0.2
+whitenoise==6.0.0
 wrapt==1.13.3
