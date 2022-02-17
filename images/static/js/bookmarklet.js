@@ -1,6 +1,6 @@
 (function () {
     const jquery_version = '3.4.1';
-    const site_url = 'https://mysite.com:8000/';
+    const site_url = 'https://dominikk.net/';
     const static_url = site_url + 'static/';
     const min_width = 100;
     const min_height = 100;
