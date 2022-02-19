@@ -17,6 +17,13 @@ class UserRegistrationForm(forms.ModelForm):
         model = User
         fields = ("username", "first_name", "email")
 
+    def clean_first_name(self):
+        cd = self.cleaned_data
+        # Set username as default first_name
+        if not cd.get("first_name"):
+            return cd["username"]
+        return cd["first_name"]
+
     def clean_password2(self):
         cd = self.cleaned_data
         if cd["password"] != cd["password2"]:
