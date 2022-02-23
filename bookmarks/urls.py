@@ -24,7 +24,7 @@ urlpatterns = [
     path("account/", include("account.urls")),
     path("images/", include("images.urls", namespace="images")),
     path("social_auth/", include("social_django.urls", namespace="social")),
-    path("", lambda _: redirect("dashboard"), name="root"),
+    path("", lambda: redirect("dashboard"), name="root"),
 ]
 
 if settings.DEBUG:

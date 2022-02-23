@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-7(!p#=qzj5vy-s@x4$#b(0uuz8c*k-s)i-(aa$ws^q5l-!lzmz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["dominikk.net", "dokor.de"]
+ALLOWED_HOSTS = ["dominikk.net", "dokor.de", "*"]
 
 LOGIN_REDIRECT_URL = "dashboard"
 LOGIN_URL = "login"
